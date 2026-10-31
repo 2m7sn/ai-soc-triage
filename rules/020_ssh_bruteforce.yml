@@ -1,0 +1,11 @@
+id: R-020
+title: SSH brute force - 20+ failed passwords in 60s
+category: ssh_bruteforce
+technique: T1110.001
+severity: high
+references: [https://attack.mitre.org/techniques/T1110/001/]
+detection:
+  all:
+    - {field: event_type, eq: auth_fail}
+    - {field: dst_port, eq: 22}
+    - {field: count, gte: 20}

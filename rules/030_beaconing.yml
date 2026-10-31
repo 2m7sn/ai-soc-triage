@@ -1,0 +1,13 @@
+id: R-030
+title: C2 beaconing - periodic outbound connections with low jitter
+category: beaconing
+technique: T1071.001
+severity: critical
+references: [https://attack.mitre.org/techniques/T1071/001/]
+detection:
+  all:
+    - {field: event_type, eq: http_conn}
+    - {field: count, gte: 60}
+    - {field: interval_std_s, lte: 5}
+  none:
+    - {field: dst_domain, endswith: [windowsupdate.com, time.windows.com, telemetry.vendor.example, updates.av-vendor.example]}

@@ -1,0 +1,12 @@
+id: R-010
+title: Port scan - many distinct destination ports from one source
+category: port_scan
+technique: T1046
+severity: medium
+references: [https://attack.mitre.org/techniques/T1046/]
+detection:
+  all:
+    - {field: event_type, eq: netflow_summary}
+    - {field: unique_dst_ports, gte: 30}
+  none:
+    - {field: src_ip, in: ["10.0.0.9"]}   # internal vulnerability scanner (allowlist)

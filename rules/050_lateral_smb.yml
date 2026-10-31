@@ -1,0 +1,13 @@
+id: R-050
+title: Lateral movement - admin share session + service creation
+category: lateral_smb
+technique: T1021.002
+severity: critical
+references: [https://attack.mitre.org/techniques/T1021/002/]
+detection:
+  all:
+    - {field: event_type, eq: smb_session}
+    - {field: share, in: ["ADMIN$", "C$", "IPC$"]}
+    - {field: msg, contains: "service creation"}
+  none:
+    - {field: src_ip, in: ["10.0.0.20"]}   # IT admin jump host (SCCM pushes)

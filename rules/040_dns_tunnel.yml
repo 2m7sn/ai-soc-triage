@@ -1,0 +1,12 @@
+id: R-040
+title: DNS tunnelling - long high-entropy query labels at volume
+category: dns_tunnel
+technique: T1071.004
+severity: high
+references: [https://attack.mitre.org/techniques/T1071/004/]
+detection:
+  all:
+    - {field: event_type, eq: dns_query}
+    - {field: dns_qname_len, gte: 60}
+    - {field: dns_entropy, gte: 3.9}
+    - {field: count, gte: 100}

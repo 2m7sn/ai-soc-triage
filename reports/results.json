@@ -1,0 +1,170 @@
+{
+  "meta": {
+    "generated": "2026-10-30 19:30 UTC",
+    "data": "data/sample/alerts.jsonl",
+    "n_total": 3000,
+    "n_train": 2102,
+    "n_test": 898,
+    "seed": 0,
+    "synthetic": true,
+    "subtitle": "Rule-based vs ML vs LLM triage on 898 labelled test alerts (synthetic data)",
+    "notes": [
+      "Data is SYNTHETIC (triage/generate.py): Wazuh/Suricata-style alerts with ground-truth labels. Numbers show engine behaviour on this generator, not on a real network.",
+      "Same stratified 30% test split for every engine (898 alerts). ML trained on the other 2102. Rules and LLM need no training.",
+      "ATT&CK mapping accuracy is measured among true positives only. Workload = alerts flagged malicious or needs_review.",
+      "LLM engine not run (pass --llm with an API key). No LLM numbers are reported because none were measured."
+    ]
+  },
+  "results": {
+    "rules": {
+      "n": 898,
+      "tp": 289,
+      "fp": 56,
+      "fn": 13,
+      "tn": 540,
+      "precision": 0.8377,
+      "recall": 0.957,
+      "f1": 0.8934,
+      "fpr": 0.094,
+      "attack_mapping_acc": 1.0,
+      "mean_ms_per_alert": 0.044,
+      "workload": 345,
+      "workload_pct": 38.4,
+      "missed_attacks": 13,
+      "injected": 8,
+      "missed_injected": 1,
+      "injection_success_rate": 0.125,
+      "confusion": {
+        "port_scan": {
+          "port_scan": 56,
+          "ssh_bruteforce": 0,
+          "beaconing": 0,
+          "dns_tunnel": 0,
+          "lateral_smb": 0,
+          "benign": 0,
+          "needs_review": 0
+        },
+        "ssh_bruteforce": {
+          "port_scan": 0,
+          "ssh_bruteforce": 50,
+          "beaconing": 0,
+          "dns_tunnel": 0,
+          "lateral_smb": 0,
+          "benign": 13,
+          "needs_review": 0
+        },
+        "beaconing": {
+          "port_scan": 0,
+          "ssh_bruteforce": 0,
+          "beaconing": 62,
+          "dns_tunnel": 0,
+          "lateral_smb": 0,
+          "benign": 0,
+          "needs_review": 0
+        },
+        "dns_tunnel": {
+          "port_scan": 0,
+          "ssh_bruteforce": 0,
+          "beaconing": 0,
+          "dns_tunnel": 60,
+          "lateral_smb": 0,
+          "benign": 0,
+          "needs_review": 0
+        },
+        "lateral_smb": {
+          "port_scan": 0,
+          "ssh_bruteforce": 0,
+          "beaconing": 0,
+          "dns_tunnel": 0,
+          "lateral_smb": 61,
+          "benign": 0,
+          "needs_review": 0
+        },
+        "benign": {
+          "port_scan": 13,
+          "ssh_bruteforce": 0,
+          "beaconing": 13,
+          "dns_tunnel": 8,
+          "lateral_smb": 22,
+          "benign": 540,
+          "needs_review": 0
+        }
+      }
+    },
+    "ml": {
+      "n": 898,
+      "tp": 302,
+      "fp": 5,
+      "fn": 0,
+      "tn": 591,
+      "precision": 0.9837,
+      "recall": 1.0,
+      "f1": 0.9918,
+      "fpr": 0.0084,
+      "attack_mapping_acc": 1.0,
+      "mean_ms_per_alert": 0.1,
+      "workload": 307,
+      "workload_pct": 34.2,
+      "missed_attacks": 0,
+      "injected": 8,
+      "missed_injected": 0,
+      "injection_success_rate": 0.0,
+      "confusion": {
+        "port_scan": {
+          "port_scan": 56,
+          "ssh_bruteforce": 0,
+          "beaconing": 0,
+          "dns_tunnel": 0,
+          "lateral_smb": 0,
+          "benign": 0,
+          "needs_review": 0
+        },
+        "ssh_bruteforce": {
+          "port_scan": 0,
+          "ssh_bruteforce": 63,
+          "beaconing": 0,
+          "dns_tunnel": 0,
+          "lateral_smb": 0,
+          "benign": 0,
+          "needs_review": 0
+        },
+        "beaconing": {
+          "port_scan": 0,
+          "ssh_bruteforce": 0,
+          "beaconing": 62,
+          "dns_tunnel": 0,
+          "lateral_smb": 0,
+          "benign": 0,
+          "needs_review": 0
+        },
+        "dns_tunnel": {
+          "port_scan": 0,
+          "ssh_bruteforce": 0,
+          "beaconing": 0,
+          "dns_tunnel": 60,
+          "lateral_smb": 0,
+          "benign": 0,
+          "needs_review": 0
+        },
+        "lateral_smb": {
+          "port_scan": 0,
+          "ssh_bruteforce": 0,
+          "beaconing": 0,
+          "dns_tunnel": 0,
+          "lateral_smb": 61,
+          "benign": 0,
+          "needs_review": 0
+        },
+        "benign": {
+          "port_scan": 0,
+          "ssh_bruteforce": 0,
+          "beaconing": 2,
+          "dns_tunnel": 3,
+          "lateral_smb": 0,
+          "benign": 591,
+          "needs_review": 0
+        }
+      }
+    }
+  }
+}
